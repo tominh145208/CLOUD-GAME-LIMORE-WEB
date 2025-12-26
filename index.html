@@ -11,6 +11,7 @@
             --primary: #00f2ff; --primary-glow: rgba(0, 242, 255, 0.5);
             --bg: #010409; --card: rgba(13, 17, 23, 0.7);
             --text: #ffffff; --dim: #8b949e; --gold: #f59e0b; --purple: #bc13fe; --danger: #ff4d4d; --success: #00ff88;
+            --discord: #5865F2;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -68,12 +69,29 @@
         .bottom-nav { position: fixed; bottom: 20px; left: 5%; width: 90%; height: 75px; background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(20px); border-radius: 30px; display: flex; border: 1px solid rgba(255,255,255,0.1); z-index: 1000; }
         .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--dim); }
         .nav-item.active { color: var(--primary); }
+        
         #toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #000; padding: 12px 30px; border-radius: 50px; font-weight: 800; z-index: 9999; display: none; }
         
         .toggle-btn { width: 50px; height: 26px; background: #333; border-radius: 50px; position: relative; transition: 0.3s; }
         .toggle-btn.on { background: var(--primary); }
         .toggle-btn::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: 0.3s; }
         .toggle-btn.on::after { left: 27px; }
+
+        /* Discord Button Style */
+        .discord-card {
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid var(--discord);
+            border-radius: 20px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        .discord-card:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -91,7 +109,7 @@
     <div id="home" class="page active">
         <div class="server-status">
             <span><div class="status-dot"></div> SERVER: <b>HANOI - VIETNAM</b></span>
-            <span style="color:var(--success); font-weight:900;">PING: 13ms</span>
+            <span style="color:var(--success); font-weight:900;">PING: 2ms</span>
         </div>
 
         <div style="background: var(--card); border-radius: 20px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; border: 1px solid rgba(255,255,255,0.05);">
@@ -107,7 +125,7 @@
                     <ul class="spec-list">
                         <li><i class="fas fa-check-circle"></i> RTX 4090 24GB VRAM</li>
                         <li><i class="fas fa-check-circle"></i> Intel Core i9-14900K</li>
-                        <li><i class="fas fa-check-circle"></i> 500GB RAM DDR5</li>
+                        <li><i class="fas fa-check-circle"></i> 64GB RAM DDR5</li>
                     </ul>
                     <div style="font-size:1.6rem; font-weight:900;">49.000đ</div>
                     <button class="btn-action ripple" style="background:var(--primary);" onclick="buyPkg('Gói 3 Ngày', 49000, 4320)">THUÊ NGAY</button>
@@ -119,7 +137,7 @@
                     <ul class="spec-list">
                         <li><i class="fas fa-check-circle"></i> Dual RTX 4090</li>
                         <li><i class="fas fa-check-circle"></i> Threadripper Pro</li>
-                        <li><i class="fas fa-check-circle"></i> 500GB RAM</li>
+                        <li><i class="fas fa-check-circle"></i> 128GB RAM</li>
                     </ul>
                     <div style="font-size:1.6rem; font-weight:900; color:var(--gold)">79.000đ</div>
                     <button class="btn-action ripple" style="background:var(--gold);" onclick="buyPkg('Gói 1 Tuần', 79000, 10080)">THUÊ NGAY</button>
@@ -182,13 +200,25 @@
                 <button class="btn-action ripple" style="background:var(--primary);" onclick="handleLogin()">ĐĂNG NHẬP / ĐĂNG KÝ</button>
             </div>
         </div>
+        
         <div id="user-info" style="display:none; text-align:center;">
             <div style="width:100px; height:100px; background:linear-gradient(45deg, var(--primary), var(--purple)); border-radius:50%; margin:0 auto 20px; border:3px solid #fff; display:flex; align-items:center; justify-content:center;">
                 <i class="fas fa-user-check" style="font-size:3rem; color:#fff;"></i>
             </div>
             <h1 id="display-name" style="color:var(--primary); text-transform:uppercase;">USER</h1>
             <p id="display-id" style="color:var(--dim); font-weight:800; font-size:0.9rem; margin-top:5px;">ID: #0000</p>
-            <p style="color:var(--dim); margin-top:5px;">Server Location: Hanoi, VN</p>
+            
+            <a href="https://discord.gg/hTnynzwr" target="_blank" class="discord-card ripple">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <i class="fab fa-discord" style="font-size:1.5rem; color:white;"></i>
+                    <div style="text-align:left;">
+                        <p style="font-weight:800; font-size:0.8rem;">HỖ TRỢ CỘNG ĐỒNG</p>
+                        <p style="font-size:0.6rem; color:var(--dim);">Tham gia Discord ngay</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right" style="font-size:0.7rem; color:var(--dim);"></i>
+            </a>
+
             <button class="btn-action ripple" style="background:var(--danger); color:#fff; width:150px; margin-top:40px;" onclick="handleLogout()">ĐĂNG XUẤT</button>
         </div>
     </div>
@@ -201,7 +231,6 @@
     </nav>
 
     <script>
-        // TRẠNG THÁI
         let state = { 
             balance: 0, 
             time: 0, 
@@ -260,11 +289,9 @@
             const name = document.getElementById('username-input').value.trim();
             if (!name) return showToast("Nhập tên để tiếp tục!");
             
-            // Tạo thông tin mới
             state.userName = name;
             state.userId = Math.floor(1000 + Math.random() * 9000); 
             
-            // LƯU VÀO TRÌNH DUYỆT
             localStorage.setItem('limore_user', JSON.stringify({
                 name: state.userName,
                 id: state.userId
@@ -318,7 +345,6 @@
                 list.innerHTML += `<div class="game-card ripple" onclick="play('${g.n}')"><div class="game-img-container"><img src="${g.i}" onerror="this.src='https://via.placeholder.com/300x400/111/fff?text=GAME'"></div><div class="game-info">${g.n}</div></div>`;
             });
 
-            // KIỂM TRA XEM CÓ TÀI KHOẢN ĐÃ LƯU KHÔNG
             const savedUser = localStorage.getItem('limore_user');
             if (savedUser) {
                 const userData = JSON.parse(savedUser);
